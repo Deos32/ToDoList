@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddTaskViewController" customModule="ToDoList" customModuleProvider="target">
+            <connections>
+                <outlet property="taskDescrTextField" destination="gWk-F9-Jwa" id="j1V-4m-SBp"/>
+                <outlet property="taskNameTextField" destination="B1p-gR-31s" id="7hv-RZ-Ozj"/>
+                <outlet property="view" destination="k99-qE-ocD" id="t6N-KI-wD3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="k99-qE-ocD">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="208" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-D9-pqy">
+                    <rect key="frame" x="16" y="60" width="361" height="34.333333333333343"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OG-F8-2cf">
+                            <rect key="frame" x="0.0" y="0.0" width="76.666666666666671" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="Rn2-K2-QiF"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3O-Zs-GmH">
+                            <rect key="frame" x="284.66666666666669" y="0.0" width="76.333333333333314" height="34.333333333333336"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Add">
+                                <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="addPressed:" destination="-1" eventType="touchUpInside" id="QOA-LQ-9PO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="i2p-Th-dWb">
+                    <rect key="frame" x="16" y="101" width="32" height="26.666666666666671"/>
+                </stackView>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Task name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B1p-gR-31s">
+                    <rect key="frame" x="16" y="101" width="361" height="26.666666666666671"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gWk-F9-Jwa">
+                    <rect key="frame" x="16" y="143.66666666666663" width="361" height="256"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="256" id="2ec-BF-DQB"/>
+                    </constraints>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="qGa-Pz-BPu"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="qGa-Pz-BPu" firstAttribute="trailing" secondItem="i2p-Th-dWb" secondAttribute="trailing" constant="345" id="4ce-0Q-vpc"/>
+                <constraint firstItem="gWk-F9-Jwa" firstAttribute="leading" secondItem="qGa-Pz-BPu" secondAttribute="leading" constant="16" id="5OS-3h-Jab"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="centerX" secondItem="B1p-gR-31s" secondAttribute="centerX" id="EQE-4g-fzE"/>
+                <constraint firstItem="i2p-Th-dWb" firstAttribute="top" secondItem="JDY-D9-pqy" secondAttribute="bottom" constant="6.6666666666666572" id="MSf-hQ-WkM"/>
+                <constraint firstItem="B1p-gR-31s" firstAttribute="top" secondItem="i2p-Th-dWb" secondAttribute="top" id="MeM-xf-BP3"/>
+                <constraint firstItem="gWk-F9-Jwa" firstAttribute="top" secondItem="B1p-gR-31s" secondAttribute="bottom" constant="16" id="VRx-yi-Kwu"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="centerX" secondItem="k99-qE-ocD" secondAttribute="centerX" id="aQe-WL-tLW"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="top" secondItem="qGa-Pz-BPu" secondAttribute="top" constant="1" id="bPM-a2-rAG"/>
+                <constraint firstItem="qGa-Pz-BPu" firstAttribute="trailing" secondItem="gWk-F9-Jwa" secondAttribute="trailing" constant="16" id="ePQ-Ug-TJl"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="leading" secondItem="k99-qE-ocD" secondAttribute="leadingMargin" id="nft-5L-nsD"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="leading" secondItem="B1p-gR-31s" secondAttribute="leading" id="pRJ-Vb-dg6"/>
+                <constraint firstItem="B1p-gR-31s" firstAttribute="bottom" secondItem="i2p-Th-dWb" secondAttribute="bottom" id="s1x-w6-JTV"/>
+                <constraint firstItem="JDY-D9-pqy" firstAttribute="leading" secondItem="i2p-Th-dWb" secondAttribute="leading" id="y7O-WQ-160"/>
+            </constraints>
+            <point key="canvasLocation" x="1166" y="-116"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
