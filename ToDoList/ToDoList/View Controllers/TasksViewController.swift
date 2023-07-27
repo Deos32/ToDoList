@@ -1,41 +1,33 @@
 
 import UIKit
 
-protocol DataSourceDelegate: AnyObject {
-    func didUpdateData(data: [Task])
-}
-
-class TasksViewController: UITableViewController, DataSourceDelegate {
-    
+class TasksViewController: UITableViewController, AddTaskViewControllerDelegate, TaskCellDelegate, DetailedWithEditViewControllerDelegate {
+        
     var tasksDataSource = TaskDataSource()
-    
-    var tasks: [Task]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tasksDataSource.delegate = self
-        tasksDataSource.updateData(data: [
-            Task(name: "Clean the cat", description: "", isDone: true),
-            Task(name: "Clean the room", description: "", isDone: false),
-            Task(name: "Go on a walk", description: "", isDone: false),
-            Task(name: "Check the news", description: "", isDone: false),
-            Task(name: "Sleep with cat", description: "", isDone: false)
-        ])
-    }
-    
-    func didUpdateData(data: [Task]) {
-        for task in data{
-            print(task)
-        }
-        print("TEST")
     }
     
     @IBAction func addPressed(_ sender: Any) {
         let addTaskScreen = AddTaskViewController(nibName: nil, bundle: nil)
-        
-        addTaskScreen.tableView = tableView
-        addTaskScreen.taskDataSource = tasksDataSource
+        addTaskScreen.delegate = self
         present(addTaskScreen, animated: true)
+    }
+    
+    func UpdateData() {
+        tasksDataSource.saveChanges()
+    }
+    
+    func addTaskViewController(_ vc: AddTaskViewController, didCreate task: Task) {
+        tasksDataSource.append(task: task)
+        tableView.insertRows(at: [IndexPath(row: tasksDataSource.numberOfTasks()-1, section: 0)], with: .automatic)
+        vc.dismiss(animated: true)
+    }
+    
+    func saveEdits() {
+        tasksDataSource.saveChanges()
+        tableView.reloadData()
     }
 }
 
@@ -51,9 +43,17 @@ extension TasksViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailedWithEditViewController = DetailedWithEditViewController()
+        detailedWithEditViewController.task = tasksDataSource.task(at: indexPath)
+        detailedWithEditViewController.delegate = self
+        present(detailedWithEditViewController, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
         
+        cell.delegate = self
         cell.task = tasksDataSource.task(at: indexPath)
         return cell
     }

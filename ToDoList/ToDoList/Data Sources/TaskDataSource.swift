@@ -1,39 +1,45 @@
-import UIKit
-
-
+import Foundation
 
 class TaskDataSource {
-    
-    weak var delegate: DataSourceDelegate?
     
     private var tasks: [Task] = []
     
     init(){
-        tasks = [
-            Task(name: "Clean the cat", description: "", isDone: true),
-            Task(name: "Clean the room", description: "", isDone: false),
-            Task(name: "Go on a walk", description: "", isDone: false),
-            Task(name: "Check the news", description: "", isDone: false),
-            Task(name: "Sleep with cat", description: "", isDone: false)
-        ]
+        tasks = loadData()
     }
     
-    func updateData(data: [Task]){
-        tasks = data
-        delegate?.didUpdateData(data: tasks)
+    private func saveData(_ tasks: [Task]){
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(tasks){
+            UserDefaults.standard.set(encodedData,forKey: "ToDoList")
+        }
+    }
+    
+    private func loadData() -> [Task]{
+        guard let data = UserDefaults.standard.data(forKey: "ToDoList") else { return [] }
+        let decoder = JSONDecoder()
+        if let decodedData = try? decoder.decode([Task].self, from: data) {
+            return decodedData
+        }
+        return []
     }
     
     func numberOfTasks() -> Int {
         return tasks.count
     }
     
-    func append(task: Task, to tableView: UITableView) {
+    func saveChanges() {
+        saveData(tasks)
+    }
+    
+    func append(task: Task) {
         tasks.append(task)
-        tableView.insertRows(at: [IndexPath(row: tasks.count-1, section: 0)], with: .automatic)
+        saveData(tasks)
     }
     
     func remove(at: Int) {
         tasks.remove(at: at)
+        saveData(tasks)
     }
     
     func task(at indexPath: IndexPath) -> Task{
