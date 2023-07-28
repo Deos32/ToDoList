@@ -18,7 +18,7 @@ class TasksViewController: UITableViewController, AddTaskViewControllerDelegate,
     func UpdateData() {
         tasksDataSource.saveChanges()
     }
-    
+    var testGit: Int?
     func addTaskViewController(_ vc: AddTaskViewController, didCreate task: Task) {
         tasksDataSource.append(task: task)
         tableView.insertRows(at: [IndexPath(row: tasksDataSource.numberOfTasks()-1, section: 0)], with: .automatic)
